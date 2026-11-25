@@ -7,8 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("OracleFIAP")));
 
-builder.Services.AddControllers();
-builder.Services.AddOpenApi();
+// Registra o service de Unidades pra ser injetado no controller
+builder.Services.AddScoped<EcoEnergia.Api.Services.IUnidadeService, EcoEnergia.Api.Services.UnidadeService>();
+
+builder.Services.AddControllers(); builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
