@@ -1,14 +1,17 @@
+using EcoEnergia.Api.Data;              // Acesso ao AppDbContext
+using Microsoft.EntityFrameworkCore;    // Acesso ao UseOracle
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Registra o AppDbContext usando o Oracle, com a connection string dos User Secrets
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseOracle(builder.Configuration.GetConnectionString("OracleFIAP")));
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
