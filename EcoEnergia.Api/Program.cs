@@ -10,6 +10,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Registra o service de Unidades pra ser injetado no controller
 builder.Services.AddScoped<EcoEnergia.Api.Services.IUnidadeService, EcoEnergia.Api.Services.UnidadeService>();
 
+builder.Services.AddScoped<EcoEnergia.Api.Services.IDispositivoService, EcoEnergia.Api.Services.DispositivoService>();
+builder.Services.AddScoped<EcoEnergia.Api.Services.IConsumoService, EcoEnergia.Api.Services.ConsumoService>();
 builder.Services.AddControllers(); builder.Services.AddOpenApi();
 
 var app = builder.Build();
